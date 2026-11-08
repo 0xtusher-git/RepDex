@@ -4,6 +4,9 @@ import { fetchWalletData } from '@/lib/arcApi';
 import { computeScore, getTrustLevel } from '@/lib/scoring';
 import { checkRateLimit, handleOptions, corsHeaders } from '@/lib/api-middleware';
 
+// Reads request headers (rate limiting), so it must run per-request.
+export const dynamic = 'force-dynamic';
+
 const anthropic = new Anthropic({ apiKey: process.env.CLAUDE_API_KEY ?? '' });
 
 export async function OPTIONS() {

@@ -2,6 +2,9 @@ import { NextResponse } from 'next/server';
 import { fetchWalletData } from '@/lib/arcApi';
 import { computeScore, getBadge, getTrustLevel } from '@/lib/scoring';
 
+// Reads request.url, so it must run per-request rather than be prerendered.
+export const dynamic = 'force-dynamic';
+
 // Seeded demo addresses for the leaderboard
 // In production these would come from indexing contract ScoreUpdated events
 const SEED_ADDRESSES = [
