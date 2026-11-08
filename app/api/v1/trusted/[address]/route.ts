@@ -3,6 +3,9 @@ import { fetchWalletData } from '@/lib/arcApi';
 import { computeScore } from '@/lib/scoring';
 import { checkRateLimit, handleOptions, corsHeaders } from '@/lib/api-middleware';
 
+// Reads request headers (rate limiting), so it must run per-request.
+export const dynamic = 'force-dynamic';
+
 export async function OPTIONS() {
   return handleOptions();
 }
