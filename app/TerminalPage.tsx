@@ -4,6 +4,9 @@ import Link from 'next/link';
 import { BackgroundPaths } from '@/components/ui/background-paths';
 import { GradientButton } from '@/components/ui/gradient-button';
 import SlidingTestimonial from '@/components/ui/sliding-testimonial';
+import HalftoneWordmarkFooter, {
+  type FooterColumn,
+} from '@/components/ui/halftone-wordmark-footer';
 import { ArrowsLeftRight, Gauge, SealCheck, Code } from '@phosphor-icons/react';
 
 const features = [
@@ -32,6 +35,37 @@ const features = [
     icon: <Code size={20} weight="duotone" />,
   },
 ];
+
+const footerColumns: FooterColumn[] = [
+  {
+    title: 'Product',
+    links: [
+      { label: 'Swap', href: '/swap' },
+      { label: 'Bridge', href: '/bridge' },
+      { label: 'Liquidity', href: '/liquidity' },
+    ],
+  },
+  {
+    title: 'Reputation',
+    links: [
+      { label: 'ArcGrade', href: '/arcgrade' },
+      { label: 'Leaderboard', href: '/leaderboard' },
+      { label: 'My score', href: '/my-score' },
+    ],
+  },
+  {
+    title: 'Community',
+    links: [
+      { label: 'X', href: 'https://x.com/repdex_' },
+      { label: 'GitHub', href: 'https://github.com/0xtusher-git/RepDex' },
+    ],
+  },
+];
+
+// Resolved family names from next/font in app/layout.tsx. Canvas `ctx.font`
+// cannot resolve CSS var(--font-sans), so the page's stack is passed as-is.
+const PAGE_FONT_STACK =
+  '"__Plus_Jakarta_Sans_64a611", "__Plus_Jakarta_Sans_Fallback_64a611", system-ui, sans-serif';
 
 export default function HomePage() {
   return (
@@ -172,6 +206,28 @@ export default function HomePage() {
           </a>
         </div>
       </footer>
+
+      {/* Halftone wordmark footer — intro page only */}
+      <div style={{ width: '100%' }}>
+        <HalftoneWordmarkFooter
+          wordmark="repdex"
+          label="RepDex"
+          meta="©2026 RepDex"
+          columns={footerColumns}
+          palette={{
+            background: '#0a0a0a',
+            ink: '#e8eef7',
+            warm: '#88394c',
+          }}
+          fontFamily={PAGE_FONT_STACK}
+          fontWeight={800}
+          dotGap={6}
+          radius={80}
+          crop={0.2}
+          grain={0.35}
+          height="clamp(360px, 40vw, 560px)"
+        />
+      </div>
     </div>
   );
 }
