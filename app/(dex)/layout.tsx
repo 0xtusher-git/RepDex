@@ -33,16 +33,18 @@ export default function DexLayout({ children }: { children: React.ReactNode }) {
   return (
     <AppProviders>
       <ImportedTokensProvider>
-        <div className={`app-route relative min-h-screen bg-neutral-950 text-white ${inter.variable}`}>
+        <div className={`app-route relative text-white ${inter.variable}`}>
           <script dangerouslySetInnerHTML={{ __html: HASH_REDIRECT }} />
-          <div className="app-ambient" aria-hidden="true">
-            <span className="app-ambient-blob app-ambient-blob-a" />
-            <span className="app-ambient-blob app-ambient-blob-b" />
-            <span className="app-ambient-blob app-ambient-blob-c" />
-          </div>
           <div className="relative z-10">
             <AppHeader />
-            {children}
+            <div className="app-page-panel">
+              <div className="app-ambient" aria-hidden="true">
+                <span className="app-ambient-blob app-ambient-blob-a" />
+                <span className="app-ambient-blob app-ambient-blob-b" />
+                <span className="app-ambient-blob app-ambient-blob-c" />
+              </div>
+              <div className="app-page-panel-content">{children}</div>
+            </div>
           </div>
         </div>
       </ImportedTokensProvider>

@@ -4,6 +4,49 @@
   /* GlassButton resolves these with relative oklch() color syntax. */
   --background: #0a0a0a;
   --foreground: #ffffff;
+  /* Page frame: the header and the gap around the panel share the outer color,
+     while the inset page body sits on the darker panel color. */
+  --rd-bg-outer: #0f0f10;
+  --rd-bg-panel: #050505;
+  --rd-panel-gap: 18px;
+  --rd-panel-radius: 20px;
+  /* 64px header row + 1px border; the mobile nav row adds 53px below md. */
+  --rd-header-height: 65px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--rd-bg-outer);
+}
+
+@media (max-width: 767px) {
+  .app-route {
+    --rd-header-height: 118px;
+  }
+}
+
+/* The inset page body. The ambient glow lives inside this panel so its
+   rounded corners clip the blobs, and the panel grows with its content while
+   keeping the bottom gap. */
+.app-route .app-page-panel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin: 0 var(--rd-panel-gap) var(--rd-panel-gap);
+  min-height: calc(100vh - var(--rd-header-height) - var(--rd-panel-gap));
+  min-height: calc(100dvh - var(--rd-header-height) - var(--rd-panel-gap));
+  border-radius: var(--rd-panel-radius);
+  background: var(--rd-bg-panel);
+}
+
+.app-route .app-page-panel-content {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 640px) {
+  .app-route {
+    --rd-panel-gap: 8px;
+    --rd-panel-radius: 14px;
+  }
 }
 
 .app-route .app-btn {
@@ -91,9 +134,10 @@
   cursor: not-allowed;
 }
 
-/* Ambient background: soft accent blobs behind the glass surfaces. */
+/* Ambient background: soft accent blobs behind the glass surfaces. It sits
+   inside the rounded page panel, which clips it. */
 .app-route .app-ambient {
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: 0;
   overflow: hidden;
@@ -148,16 +192,9 @@
   }
 }
 
-/* Main panel is just a layout container; glass lives on the card. */
+/* Inner content container; the page frame lives on .app-page-panel. */
 .app-route .app-main-panel {
-  border-radius: 1rem;
   background: transparent;
-}
-
-@media (min-width: 640px) {
-  .app-route .app-main-panel {
-    border-radius: 1.5rem;
-  }
 }
 
 /* Swap card and the two stacked asset boxes. */
@@ -423,6 +460,7 @@
   --nav-color-active: #ecedee;
   --nav-color-inactive: #9ba1a6;
   --nav-gap: 36px;
+  background: var(--rd-bg-outer);
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
 }

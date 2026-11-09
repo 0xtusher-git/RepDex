@@ -767,8 +767,8 @@ export function DexView({ tab, initialBuy }: { tab: DexTab; initialBuy?: string 
 
   return (
     <>
-      <main className="px-2 pb-4 pt-3 sm:px-4">
-        <div className="app-main-panel mx-auto min-h-[calc(100vh-6.75rem)] px-3 py-8 sm:px-6 sm:py-10">
+      <main className="pb-4 pt-3">
+        <div className="app-main-panel mx-auto px-3 py-8 sm:px-6 sm:py-10">
           {tab === 'swap' && (
             <div className="app-card-column mx-auto w-full">
               <div className="mb-2 flex justify-end">

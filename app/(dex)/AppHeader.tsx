@@ -159,7 +159,7 @@ export function AppHeader() {
   ) : null;
 
   return (
-    <header className="app-header border-b border-white/[0.06] bg-neutral-950">
+    <header className="app-header border-b border-white/[0.06]">
       <div className="mx-auto flex h-16 max-w-[1400px] items-center gap-3 px-3 sm:px-6">
         {/*
           Plain anchor (not next/link) on purpose: a full document load keeps the
